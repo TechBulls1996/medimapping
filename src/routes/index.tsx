@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Contact from "../pages/Contact";
 import Footer from "../components/footer";
 import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 function MainLayout() {
   return (
@@ -34,6 +35,10 @@ const ROUTES = [
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/auth/register",
+        element: <Register />,
       },
     ],
   },

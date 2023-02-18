@@ -46,7 +46,10 @@ const Home = () => {
                 <NavLink to={"login"} className="btn btn-dark mt-4">
                   Get Started
                 </NavLink>
-                <NavLink to={"login"} className="btn btn-primary mt-4 ms-2">
+                <NavLink
+                  to={"auth/register"}
+                  className="btn btn-primary mt-4 ms-2"
+                >
                   Register with us
                 </NavLink>
               </div>
