@@ -107,7 +107,6 @@ const Register = () => {
                         type="checkbox"
                         value=""
                         id="customCheck1"
-                        checked
                       />
                       <label
                         className="custom-control-label"
