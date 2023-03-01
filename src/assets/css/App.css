@@ -1,3 +1,9 @@
+/* external fonts*/
+@font-face {
+  font-family: Futura;
+  src: url(../fonts/Futura-Medium.woff);
+}
+
 .navbar-brand img {
   max-width: 150px;
 }
@@ -521,6 +527,139 @@ button.like-btn {
   transform: translateY(-50%);
 }
 
+.masthead {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 58rem !important;
+  padding: 8rem 0rem !important;
+  background: url(../images/top_bg.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+.masthead h1 {
+  font-family: "Futura";
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+  letter-spacing: 0px;
+  background: -webkit-linear-gradient(
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0)
+  );
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.masthead h1 {
+  font-size: 6.5rem;
+  line-height: 6.5rem;
+  letter-spacing: 14px;
+}
+.masthead h2 {
+  max-width: 30rem;
+  font-size: 1.25rem;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.0625em;
+}
+
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+  border-radius: 50%;
+  border: 2px #fff solid;
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  -webkit-transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
+  transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
+}
+.hovereffect:hover img {
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.bread-bar {
+  background: #f9f9f9;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+  min-height: 40px;
+  height: auto;
+  position: relative;
+  z-index: 555;
+}
+.breadcrumb {
+  background: none;
+  margin: 0;
+  font-weight: 300;
+  padding-left: 0;
+  font-size: 13px;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+.breadcrumb li {
+  font-weight: 600;
+}
+.breadcrumb a {
+  color: #999;
+}
+.breadcrumb > li + li::before {
+  content: "\203A";
+  color: #999;
+  padding: 0 8px;
+}
+.contact-section .card {
+  border: 0;
+  border-bottom: 0.35rem solid #ec1a1a;
+}
+
+.contact-section .card h4 {
+  font-size: 0.8rem;
+  font-family: "Futura";
+  text-transform: uppercase;
+  letter-spacing: 0.15rem;
+}
+
+.contact-section .card hr {
+  border-color: #e64c4b;
+  border-width: 0.25rem;
+  width: 3rem;
+  margin: auto;
+}
+
+.contact-section .social {
+  margin-top: 5rem;
+  padding: 15px;
+}
+
+.contact-section .social a {
+  text-align: center;
+  height: 3rem;
+  width: 3rem;
+  background: #fff;
+  border-radius: 100%;
+  line-height: 3rem;
+  color: #e64c4b;
+}
+
+.contact-section .social a:hover {
+  color: rgba(4, 1, 1, 0.5);
+}
+
+.contact-section .social a:active {
+  color: #fff;
+}
+
+/* Responsive CSS */
 @media (min-width: 992px) {
   .dropdown:not(.dropdown-hover) .dropdown-menu {
     margin-top: 32px !important;

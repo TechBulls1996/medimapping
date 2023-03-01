@@ -3,6 +3,7 @@ import Header from "../components/header";
 import ErrorPage from "../pages/error-page";
 import Home from "../pages/Home";
 import Contact from "../pages/Contact";
+import About from "../pages/About";
 import Footer from "../components/footer";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -41,6 +42,10 @@ const ROUTES = [
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/login",
