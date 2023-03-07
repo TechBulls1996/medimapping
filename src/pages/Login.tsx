@@ -1,10 +1,30 @@
+import { FormEvent, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { UserLogin } from "../services/AuthServices";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {}, []);
+
+  const onLogin = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    UserLogin({ email, password })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {});
+  };
   return (
     <>
       <div className="conatiner mb-7">
-        <form id="login-form" method="post" className="p-5 col-lg mx-lg-auto">
+        <form
+          id="login-form"
+          method="post"
+          className="p-5 col-lg mx-lg-auto"
+          onSubmit={(e) => onLogin(e)}
+        >
           <div className="row">
             <div className="col-lg-5 mx-lg-auto bg-light shadow p-5 mt-7">
               <h3 className="text-center"> Login Yourself</h3>
@@ -13,22 +33,25 @@ const Login = () => {
               <div className="form-row">
                 <div className="form-group col-md-12">
                   <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     type="email"
                     className="form-control"
                     id="email"
                     name="email"
                     placeholder="Enter Email"
-                    required
+                    autoFocus
                   />
                 </div>
                 <div className="form-group col-md-12">
                   <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     className="form-control"
                     id="password"
                     name="password"
                     placeholder="Enter Password"
-                    required
                   />
                 </div>
                 <div className="row">

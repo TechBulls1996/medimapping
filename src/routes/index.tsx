@@ -16,6 +16,7 @@ import Doctors from "../pages/user/Doctors";
 import Records from "../pages/user/Records";
 import Vitals from "../pages/user/Vitals";
 import History from "../pages/user/History";
+import Blogs from "../pages/Blogs";
 
 function MainLayout() {
   return (
@@ -46,6 +47,10 @@ const ROUTES = [
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
       {
         path: "/login",

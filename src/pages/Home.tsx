@@ -6,6 +6,9 @@ import redNoiseImg from "../assets/images/red-noise.jpeg";
 import AstroImg from "../assets/images/astro.png";
 import { NavLink } from "react-router-dom";
 import DonateImg from "../assets/images/5297890.jpg";
+import BlogCard from "../components/blogCard";
+import HomeRequestSection from "../components/HomeRequestSection";
+import HomeDonarSection from "../components/HomeDonorSection";
 
 const Home = () => {
   const backgroundRedImg = {
@@ -151,6 +154,37 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <HomeRequestSection />
+
+      <section
+        className="pt-3 pb-5 mt-sm-7 mt-5 position-relative"
+        id="section-tools"
+      >
+        <div className="container">
+          <div className="row position-relative overflow-hidden mb-2">
+            <div className="col-md-7">
+              <span className="text-primary font-weight-bold">
+                Get inspired By,
+              </span>
+              <h2 className="mt-2 display-6 font-weight-black">
+                Our Latest Blogs
+              </h2>
+              <p>
+                You can start reading our fully motivated blogs, if you want to
+                get inspired.
+              </p>
+            </div>
+          </div>
+          <div className="row">
+            <BlogCard />
+            <BlogCard />
+            <BlogCard />
+          </div>
+        </div>
+      </section>
+
+      <HomeDonarSection />
     </>
   );
 };

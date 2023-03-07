@@ -125,19 +125,27 @@
   display: flex;
   align-items: flex-start;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .user-card {
-  padding: 16px;
+  padding: 23px 4px;
   border: 1px solid #eee;
   text-align: center;
   box-shadow: 5px 5px 5px #eee;
   border-radius: 8px;
   max-width: 380px;
-  margin-left: 25px;
+  margin-right: 15px;
+  min-width: 30%;
+  position: relative;
 }
 .user-card:first-child {
   margin-left: 0px;
+}
+
+.user-card .interested-sec {
+  top: 5px;
+  left: 5px;
 }
 
 @media (max-width: 800px) {
@@ -234,23 +242,20 @@ button.like-btn {
   font-weight: 600;
   line-height: normal;
 }
-.doctorslist .interested-sec {
+.interested-sec {
   position: absolute;
   top: -11px;
   left: 0;
   background-color: initial;
   border: none;
-  min-width: inherit;
-  max-width: inherit;
-}
-.interested-sec {
   margin-left: auto;
   font-size: 13px;
   text-align: right;
   min-width: 100px;
   max-width: 100px;
 }
-.doctorslist .interested-sec .doc-live {
+
+.interested-sec .doc-live {
   background-color: #c2f58f;
 }
 
@@ -258,7 +263,7 @@ button.like-btn {
   background-color: #dc444e !important;
   color: #fff;
 }
-.doctorslist .interested-sec .doc-live {
+.interested-sec .doc-live {
   border-radius: 15px;
   line-height: 22px;
   padding: 0 15px;
@@ -564,6 +569,11 @@ button.like-btn {
   letter-spacing: 0.0625em;
 }
 
+.masthead-small {
+  min-height: 240px !important;
+  max-height: 301px;
+}
+
 .hovereffect {
   width: 100%;
   height: 100%;
@@ -659,9 +669,67 @@ button.like-btn {
   color: #fff;
 }
 
+.investors-desc ul li {
+  position: relative;
+  background-color: initial;
+  border: none;
+  padding: 10px 0 10px 50px;
+  font-size: 16px;
+  font-weight: 500;
+}
+.investors-desc ul li:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  background-image: url("../images/tick.svg");
+  margin-top: -15px;
+}
+.dealcol-sec {
+  overflow: auto;
+  height: 560px;
+}
+
+.cus-scr::-webkit-scrollbar {
+  width: 12px;
+}
+.cus-scr::-webkit-scrollbar-thumb {
+  background-color: #e27235;
+  background-color: var(--bs-primary);
+  border-radius: 15px;
+  border: 3px solid #e3e3e3;
+  border: 3px solid var(--bs-gray-300);
+}
+.cus-scr::-webkit-scrollbar-track {
+  background: #e3e3e3;
+  background: var(--bs-gray-300);
+  border-radius: 15px;
+}
+
 /* Responsive CSS */
 @media (min-width: 992px) {
   .dropdown:not(.dropdown-hover) .dropdown-menu {
     margin-top: 32px !important;
   }
+}
+
+@media (max-width: 468px) {
+}
+
+@media (max-width: 768px) {
+  .timeline-box {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1000px) {
+}
+
+@media (max-width: 1366px) {
 }
