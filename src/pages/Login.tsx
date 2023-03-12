@@ -1,21 +1,61 @@
-import { FormEvent, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { FormEvent, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { UserLogin } from "../services/AuthServices";
+import { getErrorMsg, setAuthCookie } from "../helpers";
+import Alert, { InputErrorMessage } from "../components/common/Alert";
+
+import { useDispatch } from "react-redux";
+import { setAllState } from "../app/authActions";
+import moment from "moment";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  useEffect(() => {}, []);
+  const [email, setEmail]: any = useState("");
+  const [password, setPassword]: any = useState("");
+  const [rememberMe, setRememberMe]: any = useState(false);
+  const [errors, setErrors]: any = useState([]);
 
   const onLogin = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     UserLogin({ email, password })
       .then((res) => {
-        console.log(res);
+        if (res?.status) {
+          //success
+          dispatch(
+            setAllState({
+              loginTime: moment(),
+              authStatus: true,
+              user: res?.user,
+            })
+          );
+          setAuthCookie(res?.token);
+          if (rememberMe) localStorage.setItem("remeberMe", "true");
+          navigate("/user");
+        } else if (res && res.errors) {
+          setErrors(res?.errors);
+        } else {
+          setErrors([
+            {
+              param: "global",
+              message: "Something Wrong! Please check your connection.",
+            },
+          ]);
+        }
       })
-      .catch((err) => {});
+      .catch((error) => {
+        console.log(error);
+        setErrors([
+          {
+            param: "global",
+            message: "Something Wrong! Please check your connection.",
+          },
+        ]);
+      });
   };
+
+  const globalError = getErrorMsg(errors, "global");
   return (
     <>
       <div className="conatiner mb-7">
@@ -32,6 +72,11 @@ const Login = () => {
 
               <div className="form-row">
                 <div className="form-group col-md-12">
+                  {globalError?.length > 0 && (
+                    <Alert message={globalError} alertType="danger" />
+                  )}
+                </div>
+                <div className="form-group col-md-12">
                   <input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -41,6 +86,11 @@ const Login = () => {
                     name="email"
                     placeholder="Enter Email"
                     autoFocus
+                  />
+
+                  <InputErrorMessage
+                    message={getErrorMsg(errors, "email")}
+                    alertType="danger"
                   />
                 </div>
                 <div className="form-group col-md-12">
@@ -53,6 +103,10 @@ const Login = () => {
                     name="password"
                     placeholder="Enter Password"
                   />
+                  <InputErrorMessage
+                    message={getErrorMsg(errors, "password")}
+                    alertType="danger"
+                  />
                 </div>
                 <div className="row">
                   <div className="col-sm">
@@ -60,8 +114,9 @@ const Login = () => {
                       <input
                         className="form-check-input"
                         type="checkbox"
-                        value=""
                         id="customCheck1"
+                        value={rememberMe}
+                        onChange={(e) => setRememberMe(!rememberMe)}
                       />
                       <label
                         className="custom-control-label"

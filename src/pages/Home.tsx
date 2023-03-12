@@ -6,9 +6,11 @@ import redNoiseImg from "../assets/images/red-noise.jpeg";
 import AstroImg from "../assets/images/astro.png";
 import { NavLink } from "react-router-dom";
 import DonateImg from "../assets/images/5297890.jpg";
-import BlogCard from "../components/blogCard";
+import BlogCard from "../components/BlogCard";
 import HomeRequestSection from "../components/HomeRequestSection";
 import HomeDonarSection from "../components/HomeDonorSection";
+
+import DoctorImg from "../assets/images/doctor.jpg";
 
 const Home = () => {
   const backgroundRedImg = {
@@ -19,6 +21,7 @@ const Home = () => {
   const background: any = {
     backgroundImage: "url('images/gradient.svg')",
   };
+
   return (
     <>
       <header>
@@ -156,11 +159,65 @@ const Home = () => {
       </section>
 
       <HomeRequestSection />
+      <section className=" pb-5  position-relative" id="section-tools">
+        <div className="container">
+          <div className="row position-relative overflow-hidden mb-2">
+            <div className="col-md-5">
+              <span className="text-primary font-weight-bold">
+                Are You A Hero,
+              </span>
+              <h2 className="mt-2 display-6 font-weight-black">
+                For Hospitals/Clinics
+              </h2>
+              <p>You can start with us, We can Help more people together.</p>
 
-      <section
-        className="pt-3 pb-5 mt-sm-7 mt-5 position-relative"
-        id="section-tools"
-      >
+              <div className="investors-column pt-4">
+                <header className="entry-title">
+                  <h4 className="title-head">
+                    <strong className="text-primary">Want to Reach</strong> new
+                    Limits.
+                  </h4>
+                  <p>
+                    Medimapping lets you effortlessly manage your new reachs and
+                    help you to grow with seamless tools. we offer you 1000's
+                    cumtomers with thier tracked past history and discplaned
+                    with health.
+                  </p>
+                </header>
+                <div className="investors-desc">
+                  <ul className="list-group">
+                    <li className="list-group-item">Get Unlimited Cutomers</li>
+                    <li className="list-group-item">Build Network</li>
+                    <li className="list-group-item">Easy Record Maintance</li>
+                  </ul>
+                </div>
+                <div className="mt-4 mb-4">
+                  <NavLink
+                    to="/auth/register/hopital"
+                    className="btn btn-primary mr-3"
+                  >
+                    Register As Hospital/Clinic
+                  </NavLink>
+                  <NavLink
+                    to="/auth/register"
+                    className="btn btn-outline-primary mx-4"
+                  >
+                    Join as Donar
+                  </NavLink>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-7">
+              <img
+                src={DoctorImg}
+                alt="For Hospitals/Clinics"
+                className="img img-fluid"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="pt-3 pb-5 mt-5 position-relative" id="section-tools">
         <div className="container">
           <div className="row position-relative overflow-hidden mb-2">
             <div className="col-md-7">

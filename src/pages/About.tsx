@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import donateImg from "../assets/images/donate.png";
 import receiveImg from "../assets/images/receive.png";
-import BreadCrumb from "../components/common/breadcrumb";
+import BreadCrumb from "../components/common/Breadcrumb";
 
 const About = () => {
   return (

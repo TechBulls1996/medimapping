@@ -1,7 +1,7 @@
 import RecentDonars from "../../components/user/recentDonars";
 import Sidebar from "../../components/user/sidebar";
 import { DoctorCards } from "../../components/user/userCards";
-import SearchBar from "../../components/common/search";
+import SearchBar from "../../components/common/Search";
 
 const Doctors = () => {
   return (

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import DonateImg from "../assets/images/5297890.jpg";
-import BreadCrumb from "../components/common/breadcrumb";
+import BreadCrumb from "../components/common/Breadcrumb";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEnvelope,

@@ -9,143 +9,32 @@ import {
   faTint,
 } from "@fortawesome/free-solid-svg-icons";
 
-const UserCards = () => {
+const UserCards = (props: any) => {
   return (
     <>
       <div className="col-sm-12 mb-5 network-row">
-        <div className="user-card mt-3">
-          <a href="/UserProfile/629449f183201e1dcc1407f4">
-            <figure className="figure">
-              <img src={dummyImg} className="figure-img img-fluid" alt="" />
-            </figure>
-          </a>
-          <div className="contect-sec">
-            <a href="/UserProfile/629449f183201e1dcc1407f4/">
-              <h3 className="title-xxs">Sagar Kumar </h3>
-            </a>
+        {[1, 2, 3, 4, 5].map((ind) => {
+          return (
+            <div className="user-card mt-3" key={ind} {...props}>
+              <a href="/UserProfile/629449f183201e1dcc1407f4">
+                <figure className="figure">
+                  <img src={dummyImg} className="figure-img img-fluid" alt="" />
+                </figure>
+              </a>
+              <div className="contect-sec">
+                <a href="/UserProfile/629449f183201e1dcc1407f4/">
+                  <h3 className="title-xxs">Sagar Kumar </h3>
+                </a>
 
-            <small className="subhead">
-              Looking for AB+ in New Delhi, Delhi
-            </small>
+                <small className="subhead">
+                  Looking for AB+ in New Delhi, Delhi
+                </small>
 
-            <small className="timeago text-muted">10 months ago</small>
-          </div>
-        </div>
-        <div className="user-card mt-3">
-          <a href="/UserProfile/629449f183201e1dcc1407f4">
-            <figure className="figure">
-              <img src={dummyImg} className="figure-img img-fluid" alt="" />
-            </figure>
-          </a>
-          <div className="contect-sec">
-            <a href="/UserProfile/629449f183201e1dcc1407f4/">
-              <h3 className="title-xxs">Sagar Kumar </h3>
-            </a>
-
-            <small className="subhead">
-              Looking for AB+ in New Delhi, Delhi
-            </small>
-
-            <small className="timeago text-muted">10 months ago</small>
-          </div>
-        </div>
-
-        <div className="user-card mt-3">
-          <div className="interested-sec text-center">
-            <span className="doc-live">Top Donar</span>
-          </div>
-          <a href="/UserProfile/629449f183201e1dcc1407f4">
-            <figure className="figure">
-              <img src={dummyImg} className="figure-img img-fluid" alt="" />
-            </figure>
-          </a>
-          <div className="contect-sec">
-            <a href="/UserProfile/629449f183201e1dcc1407f4/">
-              <h3 className="title-xxs">Sagar Kumar </h3>
-            </a>
-
-            <small className="subhead">
-              Looking for AB+ in New Delhi, Delhi
-            </small>
-
-            <small className="timeago text-muted">10 months ago</small>
-          </div>
-        </div>
-        <div className="user-card mt-3">
-          <a href="/UserProfile/629449f183201e1dcc1407f4">
-            <figure className="figure">
-              <img src={dummyImg} className="figure-img img-fluid" alt="" />
-            </figure>
-          </a>
-          <div className="contect-sec">
-            <a href="/UserProfile/629449f183201e1dcc1407f4/">
-              <h3 className="title-xxs">Sagar Kumar </h3>
-            </a>
-
-            <small className="subhead">
-              Looking for AB+ in New Delhi, Delhi
-            </small>
-
-            <small className="timeago text-muted">10 months ago</small>
-          </div>
-        </div>
-        <div className="user-card mt-3">
-          <div className="interested-sec text-center">
-            <span className="doc-live">Top Donar</span>
-          </div>
-          <a href="/UserProfile/629449f183201e1dcc1407f4">
-            <figure className="figure">
-              <img src={dummyImg} className="figure-img img-fluid" alt="" />
-            </figure>
-          </a>
-          <div className="contect-sec">
-            <a href="/UserProfile/629449f183201e1dcc1407f4/">
-              <h3 className="title-xxs">Sagar Kumar </h3>
-            </a>
-
-            <small className="subhead">
-              Looking for AB+ in New Delhi, Delhi
-            </small>
-
-            <small className="timeago text-muted">10 months ago</small>
-          </div>
-        </div>
-        <div className="user-card mt-3">
-          <a href="/UserProfile/629449f183201e1dcc1407f4">
-            <figure className="figure">
-              <img src={dummyImg} className="figure-img img-fluid" alt="" />
-            </figure>
-          </a>
-          <div className="contect-sec">
-            <a href="/UserProfile/629449f183201e1dcc1407f4/">
-              <h3 className="title-xxs">Sagar Kumar </h3>
-            </a>
-
-            <small className="subhead">
-              Looking for AB+ in New Delhi, Delhi
-            </small>
-
-            <small className="timeago text-muted">10 months ago</small>
-          </div>
-        </div>
-        <div className="user-card mt-3">
-          <a href="/UserProfile/629449f183201e1dcc1407f4">
-            <figure className="figure">
-              <img src={dummyImg} className="figure-img img-fluid" alt="" />
-            </figure>
-          </a>
-          <div className="contect-sec">
-            <a href="/UserProfile/629449f183201e1dcc1407f4/">
-              <h3 className="title-xxs">Sagar Kumar </h3>
-            </a>
-
-            <small className="subhead">
-              Looking for AB+ in New Delhi, Delhi
-            </small>
-
-            <small className="timeago text-muted">10 months ago</small>
-          </div>
-        </div>
+                <small className="timeago text-muted">10 months ago</small>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </>
   );

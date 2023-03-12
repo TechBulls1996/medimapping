@@ -1,9 +1,37 @@
 import { NavLink } from "react-router-dom";
 import Post from "./user/post";
+import { useEffect, useState } from "react";
+import { GetRequest } from "../services/RequestServices";
+import { getErrorMsg } from "../helpers";
+import MyAlert from "./common/Alert";
 
 const HomeRequestSection = () => {
-  return (
-    <section className="position-relative" id="section-tools">
+  const [post, setPost] = useState([]);
+  const [page] = useState(1);
+  const [pageSize] = useState(10);
+  const [errors, setErrors]: any = useState([]);
+
+  const getRequest = GetRequest;
+
+  useEffect(() => {
+    getRequest({
+      page,
+      pageSize,
+    }).then((res) => {
+      if (res?.status) {
+        setPost(res.data);
+        return true;
+      } else {
+        setErrors(res?.errors);
+        return false;
+      }
+    });
+  }, [getRequest, page, pageSize]);
+
+  const globalError = getErrorMsg(errors, "global");
+
+  return post?.length > 0 ? (
+    <section className="position-relative pb-8" id="section-tools">
       <div className="container">
         <div className="row position-relative overflow-hidden mb-2">
           <div className="col-md-7 pb-4">
@@ -44,11 +72,11 @@ const HomeRequestSection = () => {
                 </ul>
               </div>
               <div className="mt-4 mb-4">
-                <NavLink to="/auth/register" className="btn btn-primary mr-3">
+                <NavLink to="/auth/login" className="btn btn-primary mr-3">
                   Raise Blood Request
                 </NavLink>
                 <NavLink
-                  to="/auth/register"
+                  to="/auth/register/"
                   className="btn btn-outline-primary mx-4"
                 >
                   Join as Donar
@@ -58,25 +86,18 @@ const HomeRequestSection = () => {
           </div>
           <div className="col-lg-8 dealcol-sec cus-scr">
             {/* Blood Request listing here... */}
-            <div className="col-sm ">
-              <Post />
-            </div>
-
-            <div className="col-sm">
-              <Post />
-            </div>
-
-            <div className="col-sm">
-              <Post />
-            </div>
-
-            <div className="col-sm">
-              <Post />
+            {globalError?.length > 0 && (
+              <MyAlert message={globalError} alertType="danger" />
+            )}
+            <div className="row">
+              {post && post.map((post) => <Post post={post} />)}
             </div>
           </div>
         </div>
       </div>
     </section>
+  ) : (
+    <></>
   );
 };
 

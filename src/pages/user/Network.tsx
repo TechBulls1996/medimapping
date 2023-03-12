@@ -1,4 +1,4 @@
-import SearchBar from "../../components/common/search";
+import SearchBar from "../../components/common/Search";
 import RecentDonars from "../../components/user/recentDonars";
 import Sidebar from "../../components/user/sidebar";
 import UserCards from "../../components/user/userCards";
@@ -62,7 +62,7 @@ const Network = () => {
               </div>
               {/* start listing */}
               <div className="row">
-                <UserCards />
+                <UserCards style={{ width: "48%" }} />
               </div>
             </div>
             <div className="col-sm">

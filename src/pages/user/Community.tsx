@@ -1,8 +1,38 @@
+import { useEffect, useState } from "react";
 import Post from "../../components/user/post";
 import RecentDonars from "../../components/user/recentDonars";
+import RequestModal from "../../components/user/requestModal";
 import Sidebar from "../../components/user/sidebar";
+import { useSelector } from "react-redux";
+import { GetRequest } from "../../services/RequestServices";
+import { getErrorMsg } from "../../helpers";
+import MyAlert from "../../components/common/Alert";
 
 const Community = () => {
+  const authState = useSelector((state: any) => state.auth.user);
+  const [modalStatus, setModalStatus] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [pageSize] = useState(10);
+  const [errors, setErrors]: any = useState([]);
+
+  useEffect(() => {
+    GetRequest({
+      page,
+      pageSize,
+    }).then((res) => {
+      if (res?.status) {
+        setPage(page + 1);
+        setPosts(res.data);
+      } else {
+        setErrors(res?.errors);
+        return false;
+      }
+    });
+  }, []);
+
+  const globalError = getErrorMsg(errors, "global");
+
   return (
     <>
       <section className="container container-fluid benefits-section pt-7 pb-7 px-0 ">
@@ -13,11 +43,21 @@ const Community = () => {
             </div>
             <div className="col-sm-6 pt-4">
               <header className=" d-flex align-items-center">
-                <h3 className="title-md">Hi, Surya</h3>
-                <button type="button" className="btn btn-outline-primary mt-2">
+                <h3 className="title-md">
+                  Hi, {authState?.name?.split(" ")[0] || authState.name}
+                </h3>
+                <button
+                  type="button"
+                  className="btn btn-outline-primary mt-2"
+                  onClick={(e) => setModalStatus(true)}
+                >
                   + Add New Request
                 </button>
               </header>
+              <RequestModal
+                modalStatus={modalStatus}
+                setModalStatus={setModalStatus}
+              />
               <div className="detailcheck-sec">
                 <div className="row">
                   <div className="col-sm-12">
@@ -93,7 +133,12 @@ const Community = () => {
               </div>
               {/* start listing */}
               <div className="row">
-                <Post />
+                {globalError?.length > 0 && (
+                  <MyAlert message={globalError} alertType="danger" />
+                )}
+                {posts?.map((post: any) => (
+                  <Post post={post} key={post._id} />
+                ))}
               </div>
             </div>
             <div className="col-sm">

@@ -1,5 +1,5 @@
-import BreadCrumb from "../components/common/breadcrumb";
-import BlogCard from "../components/blogCard";
+import BreadCrumb from "../components/common/Breadcrumb";
+import BlogCard from "../components/BlogCard";
 
 const Blogs = () => {
   return (
