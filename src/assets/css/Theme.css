@@ -5419,6 +5419,7 @@ fieldset:disabled .btn {
   width: auto;
   margin: var(--bs-modal-margin);
   pointer-events: none;
+  max-width:92%;
 }
 .modal.fade .modal-dialog {
   transition: transform 0.3s ease-out;
@@ -5539,7 +5540,7 @@ fieldset:disabled .btn {
     margin-left: auto;
   }
   .modal-sm {
-    --bs-modal-width: 300px;
+    --bs-modal-width: 655px;
   }
 }
 

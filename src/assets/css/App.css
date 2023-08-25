@@ -116,7 +116,8 @@
 
 .contect-sec {
   padding: 0px 15px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
 }
 .title-xxs {
   font-size: 17px;
@@ -201,7 +202,6 @@
 .pro-outer-sec {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
 }
 
 .pro-outer-sec .figure {

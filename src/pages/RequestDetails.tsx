@@ -1,27 +1,35 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import Post from "../components/user/post";
 import RecentDonars from "../components/user/recentDonars";
-import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
-import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterShareButton,
-  TwitterIcon,
-  LineShareButton,
-  LinkedinIcon,
-  WhatsappShareButton,
-  WhatsappIcon,
-  EmailShareButton,
-  EmailIcon,
-  TelegramIcon,
-  TelegramShareButton,
-} from "react-share";
+
+import { GetRequest } from "../services/RequestServices";
+import { getErrorMsg } from "../helpers";
+import MyAlert from "../components/common/Alert";
+import moment from "moment";
 
 const RequestDetails = () => {
-  const title = "Need a Blood Donar, Emergency !!";
-  const url = window.location.href;
-  const desc =
-    "I need a Help, I am Looking for Blood Donar if you are near by me, Please consider it emergency.";
+  const [post, setPost]: any = useState({});
+  const [errors, setErrors]: any = useState([]);
+  const [donate, upLiftDonate] = useState(post?.response?.length || 0);
+  const [donateStatus, setDonateStatus] = useState(post?.response?.length || 0);
+
+  useEffect(() => {
+    GetRequest({
+      page: 1,
+      pageSize: 1,
+    }).then((res) => {
+      if (res?.status) {
+        setPost(res.data[0]);
+        upLiftDonate(res.data[0]?.response?.length);
+      } else {
+        setErrors(res?.errors);
+        return false;
+      }
+    });
+  }, []);
+
+  const globalError = getErrorMsg(errors, "global");
+
   return (
     <>
       <section className="container container-fluid benefits-section pt-7 pb-7 px-0 ">
@@ -35,9 +43,26 @@ const RequestDetails = () => {
               </p>
               {/* start listing */}
               <div className="row">
-                <Post />
+                {globalError?.length > 0 && (
+                  <MyAlert message={globalError} alertType="danger" />
+                )}
+
+                {post?._id && (
+                  <Post
+                    post={post}
+                    donateAction={true}
+                    upLiftDonate={(donate: any, donateStatus: any) => {
+                      upLiftDonate(donate);
+                      setDonateStatus(donateStatus);
+                    }}
+                  />
+                )}
 
                 <div className="col-sm-12 m-auto  mb-2 pt-3 pl-3">
+                  {donateStatus && (
+                    <MyAlert message={donateStatus} alertType="success" />
+                  )}
+
                   <h5>More Details</h5>
                 </div>
                 <div className="col-sm-12 p-3">
@@ -47,91 +72,78 @@ const RequestDetails = () => {
                         <th>Request Status : </th>
                         <td className="">
                           {" "}
-                          <code>Requirement not fulfilled</code>
+                          <span className="text-danger text-bold">
+                            {post?.status === "pending" &&
+                              "Requirement is not fulfilled. Please consider your help."}
+
+                            {!post?.status &&
+                              "Requirement is not fulfilled. Please consider your help."}
+                          </span>
+                          <span className="text-warning text-bold">
+                            {post?.status === "moderate" &&
+                              "Requirement is still not fulfilled completely."}
+                          </span>
+                          <span className="text-success text-bold">
+                            {post?.status === "done" &&
+                              "Requirement is fulfilled. Thanks for your Support."}
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>People Responded : </th>
+                        <td className="">
+                          <code>{donate}</code>
                         </td>
                       </tr>
                       <tr>
                         <th>Blood Type : </th>
-                        <td className="">Blood </td>
+                        <td className="">{post?.bloodType} </td>
                       </tr>
 
                       <tr>
                         <th>Blood Required : </th>
-                        <td className="">1 Units </td>
+                        <td className="">
+                          {post?.bloodUnit && post?.bloodUnit + " Units"}{" "}
+                        </td>
                       </tr>
                       <tr>
                         <th>Hospital Name : </th>
-                        <td className=""> Indian Spinal Injuries Center </td>
+                        <td className=""> {post?.hospital} </td>
                       </tr>
                       <tr>
                         <th>Hospital Address : </th>
-                        <td className="">Vasant Kunj </td>
+                        <td className="">{post?.hospitalAddress} </td>
                       </tr>
 
                       <tr>
                         <th>City : </th>
-                        <td className="">New Delhi </td>
+                        <td className="">{post?.city?.value} </td>
                       </tr>
 
                       <tr>
                         <th>State : </th>
-                        <td className="">Delhi </td>
+                        <td className="">{post?.state?.value} </td>
                       </tr>
                       <tr>
                         <th>Country : </th>
-                        <td className="">India </td>
+                        <td className="">{post?.country?.value} </td>
                       </tr>
 
                       <tr>
                         <th>Date : </th>
-                        <td className="border-bottom">02 Apr, 2022 </td>
+                        <td className="border-bottom">
+                          {post?.createdAt &&
+                            moment(post?.createdAt).format(
+                              "do MMMM, YYYY  h:mm:ss A"
+                            )}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div className="col-sm-12  mb-2 pt-5 pl-3">
-                  <h5>
-                    Share us on Social Media{" "}
-                    <FontAwesomeIcon icon={faShareSquare} />{" "}
-                  </h5>
-
-                  <div className="d-flex">
-                    <FacebookShareButton
-                      url={url}
-                      quote={desc}
-                      hashtag="#medimapping #blood #donar #help"
-                    >
-                      <FacebookIcon size={50} round={false} />
-                    </FacebookShareButton>
-
-                    <TwitterShareButton
-                      url={url}
-                      hashtags={["medimapping", "blood", "donar", "help"]}
-                      title={title}
-                    >
-                      <TwitterIcon size={50} round={false} />
-                    </TwitterShareButton>
-
-                    <LineShareButton url={url} title={title}>
-                      <LinkedinIcon size={50} round={false} />
-                    </LineShareButton>
-
-                    <WhatsappShareButton url={url}>
-                      <WhatsappIcon size={50} round={false} />
-                    </WhatsappShareButton>
-
-                    <EmailShareButton url={url} subject={title} body={desc}>
-                      <EmailIcon size={50} round={false} />
-                    </EmailShareButton>
-
-                    <TelegramShareButton url={url}>
-                      <TelegramIcon size={50} round={false}></TelegramIcon>
-                    </TelegramShareButton>
-                  </div>
-                </div>
               </div>
             </div>
-            <div className="col-sm">
+            <div className="col-sm px-3">
               <RecentDonars />
             </div>
           </div>

@@ -10,7 +10,7 @@ import BlogCard from "../components/BlogCard";
 import HomeRequestSection from "../components/HomeRequestSection";
 import HomeDonarSection from "../components/HomeDonorSection";
 
-import DoctorImg from "../assets/images/doctor.jpg";
+import DoctorImg from "../assets/images/forClinics.webp";
 
 const Home = () => {
   const backgroundRedImg = {

@@ -9,11 +9,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { getTimeAgo } from "../../helpers";
 import { useEffect, useState } from "react";
-import { createLike } from "../../services/RequestServices";
+import { createLike, createResponse } from "../../services/RequestServices";
 import ShareModal from "./shareModal";
+import { MyButton } from "../common/MyButton";
 
-const Post = ({ post }: any) => {
-  const [like, setLike]: any = useState(post?.social.Likes.length || 0);
+const Post = ({ post, donateAction, upLiftDonate }: any) => {
+  const [like, setLike]: any = useState(post?.social?.Likes?.length || 0);
+  const [donate, setDonate]: any = useState(post?.response?.length || 0);
+  const [donateStatus, setDonateStatus]: any = useState(false);
   const [modalStatus, setModalStatus] = useState(false);
 
   const handleLike = (postId: string) => {
@@ -28,10 +31,37 @@ const Post = ({ post }: any) => {
     });
   };
 
-  useEffect(() => {}, [like]);
+  const handleDonateNow = (postId: string) => {
+    return createResponse({ requestId: postId }).then((res) => {
+      let newDonate = donate;
+      if (res.status) {
+        setDonate(newDonate + 1);
+      }
+      setDonateStatus(res?.message);
+      return true;
+    });
+  };
+
+  useEffect(() => {
+    if (upLiftDonate) {
+      upLiftDonate(donate, donateStatus);
+    }
+  }, [like, donate, upLiftDonate, donateStatus]);
+
+  const title = `Looking for ${post?.bloodGroup} in ${post?.city?.value} " + ${post?.state?.value}`;
+
+  if (!post) {
+    return <></>;
+  }
   return (
     <>
-      <ShareModal modalStatus={modalStatus} setModalStatus={setModalStatus} />
+      <ShareModal
+        modalStatus={modalStatus}
+        setModalStatus={setModalStatus}
+        shareUrl={"/request/" + post?._id}
+        shareDesc={post?.desc}
+        shareTitle={title}
+      />
       <div className="col-sm-12  mb-5" key={post?._id}>
         <div className="request-tab shadow pt-2">
           <div className="timeline-box justify-content-between ">
@@ -50,10 +80,7 @@ const Post = ({ post }: any) => {
                   <h3 className="title-xxs">{post?.user[0]?.name} </h3>
                 </a>
 
-                <small className="subhead">
-                  Looking for {post?.bloodGroup} in {post?.city?.value},{" "}
-                  {post?.state?.value}
-                </small>
+                <small className="subhead">{title}</small>
 
                 <small className="timeago text-muted">
                   {getTimeAgo(post?.createdAt)}
@@ -126,13 +153,24 @@ const Post = ({ post }: any) => {
               </div>
 
               <h5 className="pt-2">
-                <NavLink
-                  to={"/request/" + post?._id}
-                  className="text-primary font-weight-bold"
-                >
-                  <span> Donate </span>{" "}
-                  <FontAwesomeIcon icon={faArrowAltCircleRight} />
-                </NavLink>
+                {!donateAction && (
+                  <NavLink
+                    to={"/request/" + post?._id}
+                    className="text-primary font-weight-bold"
+                  >
+                    <span> Donate </span>{" "}
+                    <FontAwesomeIcon icon={faArrowAltCircleRight} />
+                  </NavLink>
+                )}
+
+                {donateAction && (
+                  <MyButton
+                    text="Donate Now"
+                    afterText="Submitted"
+                    afterClass="disbaled btn"
+                    onClick={(e: any) => handleDonateNow(post?._id)}
+                  />
+                )}
               </h5>
             </div>
           </div>

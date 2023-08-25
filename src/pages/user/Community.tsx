@@ -7,29 +7,65 @@ import { useSelector } from "react-redux";
 import { GetRequest } from "../../services/RequestServices";
 import { getErrorMsg } from "../../helpers";
 import MyAlert from "../../components/common/Alert";
+import { MyButton } from "../../components/common/MyButton";
 
 const Community = () => {
   const authState = useSelector((state: any) => state.auth.user);
   const [modalStatus, setModalStatus] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1);
-  const [pageSize] = useState(10);
+  const [posts, setPosts]: any = useState([]);
+  const [page, setPage]: any = useState(1);
+  const [pageSize]: any = useState(2);
+  const [nextPage, setNextPage]: any = useState(true);
+  const [sort, setSort]: any = useState(false);
   const [errors, setErrors]: any = useState([]);
 
-  useEffect(() => {
-    GetRequest({
-      page,
-      pageSize,
-    }).then((res) => {
+  const handleRequest = () => {
+    let sortFiltered = sort;
+    if (sort) {
+      const sortKeys = Object.keys(sort);
+      sortFiltered =
+        sortKeys.filter(function (key) {
+          return sort[key] === true;
+        })[0] || false;
+    }
+
+    return GetRequest({ page, pageSize, sort: sortFiltered }).then((res) => {
       if (res?.status) {
-        setPage(page + 1);
-        setPosts(res.data);
+        if (page === 1) {
+          setPosts(res.data);
+        } else {
+          let newPost = [...posts, ...res.data];
+          setPosts(newPost);
+        }
+
+        setNextPage(res.pagination.nextPage);
+        if (res.pagination.nextPage) {
+          setPage(page + 1);
+        }
       } else {
         setErrors(res?.errors);
         return false;
       }
     });
-  }, []);
+  };
+
+  useEffect(() => {
+    handleRequest();
+  }, [sort]);
+
+  const handleChange = (e: any) => {
+    let newSort: any = {
+      All: false,
+      Higest: false,
+      Recent: false,
+      NearBy: false,
+    };
+
+    newSort[e.target.value] = e.target.checked;
+    setSort(newSort);
+    setPage(1);
+    return true;
+  };
 
   const globalError = getErrorMsg(errors, "global");
 
@@ -71,6 +107,8 @@ const Community = () => {
                         id="All-Posts"
                         className="form-check-input"
                         value="All"
+                        onChange={handleChange}
+                        checked={sort?.All ? true : false}
                       />
                       <label
                         title=""
@@ -86,7 +124,9 @@ const Community = () => {
                         type="checkbox"
                         id="Announcements"
                         className="form-check-input"
-                        value="Funding Deal Announcement"
+                        value="Higest"
+                        onChange={handleChange}
+                        checked={sort?.Higest ? true : false}
                       />
                       <label
                         title=""
@@ -102,7 +142,9 @@ const Community = () => {
                         type="checkbox"
                         id="Pitchdays"
                         className="form-check-input"
-                        value="Pitch Day"
+                        value="Recent"
+                        onChange={handleChange}
+                        checked={sort?.Recent ? true : false}
                       />
                       <label
                         title=""
@@ -118,7 +160,9 @@ const Community = () => {
                         type="checkbox"
                         id="General Events"
                         className="form-check-input"
-                        value="General Event"
+                        value="NearBy"
+                        onChange={handleChange}
+                        checked={sort?.NearBy ? true : false}
                       />
                       <label
                         title=""
@@ -139,6 +183,18 @@ const Community = () => {
                 {posts?.map((post: any) => (
                   <Post post={post} key={post._id} />
                 ))}
+
+                {nextPage && (
+                  <div className="col-sm-12 text-center ">
+                    <MyButton
+                      text="Load More"
+                      afterText="Load More"
+                      extraClass="btn btn-primary "
+                      extraStyle={{ width: "180px" }}
+                      onClick={(e: any) => handleRequest()}
+                    />
+                  </div>
+                )}
               </div>
             </div>
             <div className="col-sm">

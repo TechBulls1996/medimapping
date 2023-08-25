@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import dummyImg from "../../assets/images/dummy.png";
-import { GetRecentDonars } from "../../services/RequestServices";
+import { GetRecentRecievers } from "../../services/RequestServices";
 import { getTimeAgo } from "../../helpers";
-import { NavLink } from "react-router-dom";
 
 const RecentDonars = () => {
   const [donars, setDonars]: any = useState([]);
   const [pageSize]: any = useState(5);
 
   const handleRequest = () => {
-    return GetRecentDonars({ pageSize }).then((res) => {
+    return GetRecentRecievers({ pageSize }).then((res) => {
       if (res?.status) {
         setDonars(res.data);
       } else {
@@ -26,28 +25,28 @@ const RecentDonars = () => {
   return (
     <>
       <div className="rightbar pt-4" style={{ paddingLeft: "20px" }}>
-        <h5 className="text-center mb-4">Recent Donars</h5>
+        <h5 className="text-center mb-4">Recent Receivers</h5>
         <ul className="list-group list-group-flush">
           {donars &&
             donars.map((donar: any) => (
               <li className="list-group-item">
                 <div className="pro-outer-sec mt-3">
-                  <NavLink to={"/UserProfile/" + donar.user._id}>
+                  <a href="/UserProfile/629449f183201e1dcc1407f4">
                     <figure className="figure">
                       <img
-                        src={donar?.user?.image || dummyImg}
+                        src={dummyImg}
                         className="figure-img img-fluid"
                         alt=""
                       />
                     </figure>
-                  </NavLink>
+                  </a>
                   <div className="contect-sec">
-                    <NavLink to={"/UserProfile/" + donar.user._id}>
+                    <a href="/UserProfile/629449f183201e1dcc1407f4/">
                       <h3 className="title-xxs">{donar?.user?.name} </h3>
-                    </NavLink>
+                    </a>
 
                     <small className="subhead">
-                      {donar.user?.city.value}, {donar?.user?.state?.value}
+                      Looking for AB+ in New Delhi, Delhi
                     </small>
 
                     <small className="timeago text-muted">
