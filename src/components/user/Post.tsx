@@ -10,7 +10,7 @@ import {
 import { getTimeAgo } from "../../helpers";
 import { useEffect, useState } from "react";
 import { createLike, createResponse } from "../../services/RequestServices";
-import ShareModal from "./shareModal";
+import ShareModal from "./ShareModal";
 import { MyButton } from "../common/MyButton";
 
 const Post = ({ post, donateAction, upLiftDonate }: any) => {

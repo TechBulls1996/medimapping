@@ -1,5 +1,5 @@
-import Sidebar from "../../components/user/sidebar";
-import { VitalCards } from "../../components/user/userCards";
+import Sidebar from "../../components/user/Sidebar";
+import { VitalCards } from "../../components/user/UserCards";
 
 const Vitals = () => {
   return (

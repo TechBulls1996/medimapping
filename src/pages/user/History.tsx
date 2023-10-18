@@ -1,5 +1,5 @@
-import Sidebar from "../../components/user/sidebar";
-import { HistoryCard } from "../../components/user/userCards";
+import Sidebar from "../../components/user/Sidebar";
+import { HistoryCard } from "../../components/user/UserCards";
 
 const History = () => {
   return (

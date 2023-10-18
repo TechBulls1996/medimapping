@@ -1,10 +1,10 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
-
+const API_URL = process.env.API_URL;
 module.exports = function (app) {
   app.use(
-    "/api",
+    "",
     createProxyMiddleware({
-      target: "http://localhost:4000",
+      target: `${API_URL}`,
       changeOrigin: true,
       secure: false,
       pathRewrite: {

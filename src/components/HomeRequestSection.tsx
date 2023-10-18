@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import Post from "./user/post";
+import Post from "./user/Post";
 import { useEffect, useState } from "react";
 import { GetRequest } from "../services/RequestServices";
 import { getErrorMsg } from "../helpers";

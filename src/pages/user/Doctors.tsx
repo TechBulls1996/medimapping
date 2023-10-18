@@ -1,6 +1,6 @@
-import RecentDonars from "../../components/user/recentDonars";
-import Sidebar from "../../components/user/sidebar";
-import { DoctorCards } from "../../components/user/userCards";
+import RecentDonars from "../../components/user/RecentDonars";
+import Sidebar from "../../components/user/Sidebar";
+import { DoctorCards } from "../../components/user/UserCards";
 import SearchBar from "../../components/common/Search";
 
 const Doctors = () => {

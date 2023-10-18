@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Post from "../components/user/post";
-import RecentDonars from "../components/user/recentDonars";
+import Post from "../components/user/Post";
 
 import { GetRequest } from "../services/RequestServices";
 import { getErrorMsg } from "../helpers";
 import MyAlert from "../components/common/Alert";
 import moment from "moment";
+import RecentDonars from "../components/user/RecentDonars";
 
 const RequestDetails = () => {
   const [post, setPost]: any = useState({});

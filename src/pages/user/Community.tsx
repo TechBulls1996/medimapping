@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Post from "../../components/user/post";
-import RecentDonars from "../../components/user/recentDonars";
-import RequestModal from "../../components/user/requestModal";
-import Sidebar from "../../components/user/sidebar";
+import Post from "../../components/user/Post";
+import RecentDonars from "../../components/user/RecentDonars";
+import RequestModal from "../../components/user/RequestModal";
+import Sidebar from "../../components/user/Sidebar";
 import { useSelector } from "react-redux";
 import { GetRequest } from "../../services/RequestServices";
 import { getErrorMsg } from "../../helpers";

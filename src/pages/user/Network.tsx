@@ -1,7 +1,7 @@
 import SearchBar from "../../components/common/Search";
-import RecentDonars from "../../components/user/recentDonars";
-import Sidebar from "../../components/user/sidebar";
-import UserCards from "../../components/user/userCards";
+import UserCards from "../../components/user/UserCards";
+import RecentDonars from "../../components/user/RecentDonars";
+import Sidebar from "../../components/user/Sidebar";
 
 const Network = () => {
   return (
