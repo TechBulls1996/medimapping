@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.544acf96.css",
+    "main.js": "/static/js/main.fe63c8f2.js",
+    "static/js/787.c5d4f65d.chunk.js": "/static/js/787.c5d4f65d.chunk.js",
+    "static/media/red-noise.jpeg": "/static/media/red-noise.1b1d396362505e7af66c.jpeg",
+    "static/media/top_bg.png": "/static/media/top_bg.884b1413e7d09d609d2d.png",
+    "static/media/5297890.jpg": "/static/media/5297890.cc9ee22edae0b80c446a.jpg",
+    "static/media/forClinics.webp": "/static/media/forClinics.0b46bc6d8ca8338c1025.webp",
+    "static/media/astro.png": "/static/media/astro.297654db19968c8d4090.png",
+    "static/media/Futura-Medium.woff": "/static/media/Futura-Medium.20516c7a076429487def.woff",
+    "static/media/smiley.png": "/static/media/smiley.09a6e2e3be1cea6e260f.png",
+    "static/media/heading1.png": "/static/media/heading1.87753fd1b056eeec8c02.png",
+    "static/media/donate.png": "/static/media/donate.8ad903cb3ae0586b2205.png",
+    "static/media/receive.png": "/static/media/receive.10145e4f580d43a91061.png",
+    "static/media/find.png": "/static/media/find.f793d06092f7a582acfe.png",
+    "static/media/notify.png": "/static/media/notify.677c232fd107f53e08f0.png",
+    "static/media/search-ico.svg": "/static/media/search-ico.089b1bee54c0d3223c59d60238ce3ecb.svg",
+    "index.html": "/index.html",
+    "static/media/tick.svg": "/static/media/tick.6ad1b194774bfb7cf3dc.svg",
+    "static/media/close.svg": "/static/media/close.e273b43ad46bf51561c8.svg",
+    "main.544acf96.css.map": "/static/css/main.544acf96.css.map",
+    "main.fe63c8f2.js.map": "/static/js/main.fe63c8f2.js.map",
+    "787.c5d4f65d.chunk.js.map": "/static/js/787.c5d4f65d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.544acf96.css",
+    "static/js/main.fe63c8f2.js"
+  ]
+}
