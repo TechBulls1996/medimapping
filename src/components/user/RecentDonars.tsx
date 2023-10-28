@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 const RecentDonars = () => {
   const [donars, setDonars]: any = useState([]);
   const [pageSize]: any = useState(5);
+  const [errors,setErrors]: any = useState([]);
 
   const handleRequest = () => {
     return GetRecentDonars({ pageSize }).then((res) => {
@@ -63,6 +64,4 @@ const RecentDonars = () => {
   );
 };
 export default React.memo(RecentDonars);
-function setErrors(errors: any) {
-  throw new Error("Function not implemented.");
-}
+
