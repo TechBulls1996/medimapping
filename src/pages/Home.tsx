@@ -159,7 +159,8 @@ const Home = () => {
       </section>
 
       <HomeRequestSection />
-      <section className=" pb-5  position-relative" id="section-tools">
+      
+      {/* <section className=" pb-5  position-relative" id="section-tools">
         <div className="container">
           <div className="row position-relative overflow-hidden mb-2">
             <div className="col-md-5">
@@ -216,8 +217,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
-      <section className="pt-3 pb-5 mt-5 position-relative" id="section-tools">
+      </section> */}
+
+      {/* <section className="pt-3 pb-5 mt-5 position-relative" id="section-tools">
         <div className="container">
           <div className="row position-relative overflow-hidden mb-2">
             <div className="col-md-7">
@@ -239,7 +241,7 @@ const Home = () => {
             <BlogCard />
           </div>
         </div>
-      </section>
+      </section> */}
 
       <HomeDonarSection />
     </>

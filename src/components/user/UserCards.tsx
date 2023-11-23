@@ -8,34 +8,67 @@ import {
   faRightLong,
   faTint,
 } from "@fortawesome/free-solid-svg-icons";
+import { Key, useEffect, useState } from "react";
+import { GetPublicDonars } from "../../services/DonarServices";
+import { getErrorMsg, getTimeAgo } from "../../helpers";
+import MyAlert from "../common/Alert";
 
 const UserCards = (props: any) => {
+  const [donars, setDonars]: any = useState([]);
+  const [page] = useState(1);
+  const [pageSize] = useState(10);
+  const [errors, setErrors]: any = useState([]);
+
+  // will be used for auth users add if condition for GetPublicDonars and GetDonars
+  const getDonars = GetPublicDonars;
+  
+  useEffect(() => {
+    getDonars({
+      page,
+      pageSize,
+    }).then((res) => {
+      if (res?.status) {
+        setDonars(res.data);
+        return true;
+      } else {
+        setErrors(res?.errors);
+        return false;
+      }
+    });
+  }, [getDonars, page, pageSize]);
+
+  const globalError = getErrorMsg(errors, "global");
+  const { className='', style } = props
   return (
     <>
       <div className="col-sm-12 mb-5 network-row">
-        {[1, 2, 3, 4, 5].map((ind) => {
-          return (
-            <div className="user-card mt-3" key={ind} {...props}>
-              <a href="/UserProfile/629449f183201e1dcc1407f4">
-                <figure className="figure">
-                  <img src={dummyImg} className="figure-img img-fluid" alt="" />
-                </figure>
-              </a>
-              <div className="contect-sec">
-                <a href="/UserProfile/629449f183201e1dcc1407f4/">
-                  <h3 className="title-xxs">Sagar Kumar </h3>
-                </a>
+         {globalError?.length > 0 && (
+              <MyAlert message={globalError} alertType="danger" />
+            )}
+          
+          {donars && donars.map((donar: any, ind: Key) => {
+                    return (
+                      <div className={`user-card mt-3 col ${className}`} key={ind} style={style}>
+                        <a href="/UserProfile/629449f183201e1dcc1407f4">
+                          <figure className="figure">
+                            <img src={dummyImg} className="figure-img img-fluid" alt="" />
+                          </figure>
+                        </a>
+                        <div className="contect-sec">
+                          <a href="/UserProfile/629449f183201e1dcc1407f4/">
+                            <h3 className="title-xxs"> { donar?.user?.name } </h3>
+                          </a>
 
-                <small className="subhead">
-                  Looking for AB+ in New Delhi, Delhi
-                </small>
+                          <small className="subhead">
+                            Helping from { donar.user.city.label}, { donar.user.state.label}
+                          </small>
 
-                <small className="timeago text-muted">10 months ago</small>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+                          <small className="timeago text-muted">{getTimeAgo(donar?.createdAt)}</small>
+                        </div>
+                      </div>
+                    );
+              })}
+          </div>
     </>
   );
 };

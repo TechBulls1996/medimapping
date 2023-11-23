@@ -23,3 +23,6 @@ It runs the Production build at default port 3000.
 - sudo nano /etc/nginx/conf.d/medimapping.com.conf
 - sudo nano /etc/nginx/conf.d/api.medimapping.com.conf
 - sudo nano /etc/nginx/nginx.conf
+
+### Theme url
+- https://demos.creative-tim.com/astro-ecommerce/landing/

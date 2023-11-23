@@ -11,6 +11,19 @@ export const SendRequest = async (params: object) => {
   }
 };
 
+// Public Request without Auth
+export const GetPublicRequest = async () => {
+  try {
+    const config = {
+      ...setServiceHeaders(),
+    };
+    const res = await axios.get(`${API_URL}/public/requests`, config);
+    return res.data;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+
 export const GetRequest = async (params: object) => {
   try {
     const config = {

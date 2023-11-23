@@ -7,7 +7,7 @@ import {
   faMapMarkedAlt,
   faMobileAlt,
 } from "@fortawesome/free-solid-svg-icons";
-
+import contactImg from "../assets/images/contact.jpeg";
 const Contact = () => {
   const background: any = {
     backgroundImage: "url('images/gradient.svg')",
@@ -90,7 +90,7 @@ const Contact = () => {
                       <h4 className="text-uppercase m-0">Address</h4>
                       <hr className="my-4" />
                       <div className="small text-black-50">
-                        253 Narmada Apartments, Alaknanda, New Delhi 19
+                        New Delhi, India
                       </div>
                     </div>
                   </div>
@@ -192,7 +192,7 @@ const Contact = () => {
             <div className="col-md-6 image-style">
               <img
                 className="img img-fluid img-thumbnail img-responsive"
-                src="http://medimapping.com/assets/images/contact6.jpg"
+                src={contactImg}
                 style={{ height: "100%", width: "100%" }}
                 alt=""
               />

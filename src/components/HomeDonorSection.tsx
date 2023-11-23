@@ -57,7 +57,7 @@ const HomeDonarSection = () => {
           <div className="col-lg-8 dealcol-sec cus-scr">
             {/* Blood Request listing here... */}
             <div className="col-sm ">
-              <UserCards />
+              <UserCards style={{maxWidth:'32.5%'}}/>
             </div>
           </div>
         </div>

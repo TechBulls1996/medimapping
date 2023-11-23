@@ -1,23 +1,18 @@
 import { NavLink } from "react-router-dom";
 import Post from "./user/Post";
 import { useEffect, useState } from "react";
-import { GetRequest } from "../services/RequestServices";
+import { GetPublicRequest } from "../services/RequestServices";
 import { getErrorMsg } from "../helpers";
 import MyAlert from "./common/Alert";
 
 const HomeRequestSection = () => {
   const [post, setPost] = useState([]);
-  const [page] = useState(1);
-  const [pageSize] = useState(10);
   const [errors, setErrors]: any = useState([]);
 
-  const getRequest = GetRequest;
+  const getRequest = GetPublicRequest;
 
   useEffect(() => {
-    getRequest({
-      page,
-      pageSize,
-    }).then((res) => {
+    getRequest().then((res) => {
       if (res?.status) {
         setPost(res.data);
         return true;
@@ -26,7 +21,7 @@ const HomeRequestSection = () => {
         return false;
       }
     });
-  }, [getRequest, page, pageSize]);
+  }, [getRequest]);
 
   const globalError = getErrorMsg(errors, "global");
 

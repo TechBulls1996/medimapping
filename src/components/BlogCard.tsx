@@ -1,10 +1,9 @@
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";
-
+import BlogImg from "../assets/images/product7.jpeg";
 const BlogCard = () => {
-  const BlogImg =
-    "https://www.creative-tim.com/astro/assets/img/landing-page.jpg";
+
   return (
     <div className="col-lg-4">
       <div className="card card-plain card-blog mt-4">
@@ -19,12 +18,11 @@ const BlogCard = () => {
               href="https://demos.creative-tim.com/astro-ecommerce/landing/"
               className="text-dark font-weight-bolder"
             >
-              Landing Page
+              Comming Soon
             </a>
           </h5>
           <p>
-            Designed to introduce the website's purpose and encourage the user
-            to take an action.
+            Blog will be comming Soon...
           </p>
           <NavLink
             to="#"

@@ -2,8 +2,12 @@ import RecentDonars from "../../components/user/RecentDonars";
 import Sidebar from "../../components/user/Sidebar";
 import { MedicalRecordCards } from "../../components/user/UserCards";
 import SearchBar from "../../components/common/Search";
+import { useState } from "react";
+import RecordModal from "../../components/user/RecordModal";
+
 
 const Records = () => {
+  const [modalStatus, setModalStatus] = useState(false);
   return (
     <>
       <section className="container container-fluid benefits-section pt-7 pb-7 px-0 ">
@@ -15,7 +19,18 @@ const Records = () => {
             <div className="col-sm-6 pt-4">
               <header className=" d-flex align-items-center">
                 <h3 className="title-md">My Medical Records</h3>
+                <button
+                  type="button"
+                  className="btn btn-outline-primary mt-2"
+                  onClick={(e) => setModalStatus(true)}
+                >
+                  + Add New Record
+                </button>
               </header>
+              <RecordModal
+                modalStatus={modalStatus}
+                setModalStatus={setModalStatus}
+              />
               <div className="detailcheck-sec">
                 <div className="row">
                   <div className="col-sm-12">

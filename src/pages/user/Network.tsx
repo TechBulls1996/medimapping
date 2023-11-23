@@ -62,7 +62,7 @@ const Network = () => {
               </div>
               {/* start listing */}
               <div className="row">
-                <UserCards style={{ width: "48%" }} />
+                <UserCards className="col-6" style={{ width: "49%" }} />
               </div>
             </div>
             <div className="col-sm">

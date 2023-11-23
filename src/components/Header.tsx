@@ -22,28 +22,28 @@ const Header = () => {
   };
 
   useEffect(() => {
-    const updateState = (authState: any) => {
-      if (
-        (!authState.user.name || !authState.user.email) &&
-        authState.authStatus
-      ) {
-        const userStr = localStorage.getItem("user");
-        if (!userStr || userStr.length <= 0) {
-          navigate("/auth/logout");
-        }
-        const res = JSON.parse(userStr || "{}");
-        dispatch(
-          setAllState({
-            loginTime: res?.loginTime,
-            authStatus: true,
-            user: res,
-          })
-        );
-      }
-    };
     updateState(authState);
-  }, [authState, dispatch, navigate]);
+  }, [dispatch, navigate]);
 
+  const updateState = (authState: any) => {
+    if (
+      (!authState.user.name || !authState.user.email) &&
+      authState.authStatus
+    ) {
+      const userStr = localStorage.getItem("user");
+      if (!userStr || userStr.length <= 0) {
+        navigate("/auth/logout");
+      }
+      const res = JSON.parse(userStr || "{}");
+      dispatch(
+        setAllState({
+          loginTime: res?.loginTime,
+          authStatus: true,
+          user: res,
+        })
+      );
+    }
+  };
   return (
     <>
       <div className="container position-sticky z-index-sticky top-0">
