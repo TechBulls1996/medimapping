@@ -29,3 +29,7 @@ export const setServiceHeaders = () => {
 export const getTimeAgo = (time: any) => {
   return moment(time).fromNow();
 };
+
+export const displayDate = (date: string) => {
+  return moment(date).format('DD MMM, YYYY');
+}

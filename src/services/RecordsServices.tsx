@@ -11,3 +11,16 @@ export const AddRecords = async (params: object) => {
       return error.response.data;
     }
   };
+
+  export const GetRecords = async (params: object) => {
+    try {
+      const config = {
+        ...setServiceHeaders(),
+        params,
+      };
+      const res = await axios.get(`${API_URL}/records`, config);
+      return res.data;
+    } catch (error: any) {
+      return error.response.data;
+    }
+  };  

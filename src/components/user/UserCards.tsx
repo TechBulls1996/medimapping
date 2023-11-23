@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Key, useEffect, useState } from "react";
 import { GetPublicDonars } from "../../services/DonarServices";
-import { getErrorMsg, getTimeAgo } from "../../helpers";
+import { displayDate, getErrorMsg, getTimeAgo } from "../../helpers";
 import MyAlert from "../common/Alert";
 
 const UserCards = (props: any) => {
@@ -266,10 +266,12 @@ export const DoctorCards = () => {
   );
 };
 
-export const MedicalRecordCards = () => {
+export const MedicalRecordCard = (props: { record: any; key: number }) => {
+  const { record, key } = props;
   return (
     <>
-      <div className="wfc-pointer col-md-12">
+      <div className="wfc-pointer col-md-12" key={key}>
+      <NavLink to={record._id} className="text-black ">
         <div className="doctorslist column-card w-100">
           <div className="fundingheader">
             <figure className="figure">
@@ -277,33 +279,34 @@ export const MedicalRecordCards = () => {
                 <FontAwesomeIcon icon={faBriefcase} className="fa-2x" />
               </span>
               <figcaption className="figure-caption text-capitalize">
-                Diabetes Report
+                {record.categoryOfIllness}
                 <br />
-                <NavLink to={"/doctor/12"} className="text-black ">
-                  <span>Dr. Rakesh Kumar, Atlast Hospital</span>
+                <NavLink to={"#"} className="text-black ">
+                  <span>Dr. {record.doctor}, {record.hospital}</span>
                 </NavLink>
               </figcaption>
             </figure>
             <div className="interested-sec text-center">
-              <span className=" doc-live">2 Mar, 2022</span>
+              <span className="doc-live">{displayDate(record.nextAppointment)}</span>
             </div>
           </div>
           <div className="totalinvs">
             <div className="item">
               <span className="head-sec">Location</span>
-              <span className="amount-sec ">New Delhi</span>
+              <span className="amount-sec text-capitalize">{record.hospitalAddress}</span>
             </div>
             <div className="item">
               <span className="head-sec">Next Visit</span>
-              <span className="amount-sec">2 July, 2023 10:00AM</span>
+              <span className="amount-sec">{displayDate(record.nextAppointment)}</span>
             </div>
 
             <div className="item">
-              <span className="head-sec">Specialist</span>
-              <span className="amount-sec ">Heart, Eye, Ear</span>
+              <span className="head-sec">Priority</span>
+              <span className="amount-sec text-capitalize">{record.priority}</span>
             </div>
           </div>
         </div>
+      </NavLink>  
       </div>
     </>
   );
