@@ -9,9 +9,9 @@ import {
   faTint,
 } from "@fortawesome/free-solid-svg-icons";
 import { Key, useEffect, useState } from "react";
-import { GetPublicDonars } from "../../services/DonarServices";
 import { displayDate, getErrorMsg, getTimeAgo } from "../../helpers";
 import MyAlert from "../common/Alert";
+import { GetNetworks } from "../../services/NetworkServices";
 
 const UserCards = (props: any) => {
   const [donars, setDonars]: any = useState([]);
@@ -20,10 +20,10 @@ const UserCards = (props: any) => {
   const [errors, setErrors]: any = useState([]);
 
   // will be used for auth users add if condition for GetPublicDonars and GetDonars
-  const getDonars = GetPublicDonars;
+  const getNetwork = GetNetworks;
   
   useEffect(() => {
-    getDonars({
+    getNetwork({
       page,
       pageSize,
     }).then((res) => {
@@ -35,7 +35,7 @@ const UserCards = (props: any) => {
         return false;
       }
     });
-  }, [getDonars, page, pageSize]);
+  }, [getNetwork, page, pageSize]);
 
   const globalError = getErrorMsg(errors, "global");
   const { className='', style } = props
@@ -266,12 +266,12 @@ export const DoctorCards = () => {
   );
 };
 
-export const MedicalRecordCard = (props: { record: any; key: number }) => {
-  const { record, key } = props;
+export const MedicalRecordCard = (props: { record: any; key: number; extra?: boolean; }) => {
+  const { record, key, extra = false } = props;
   return (
     <>
       <div className="wfc-pointer col-md-12" key={key}>
-      <NavLink to={record._id} className="text-black ">
+      <NavLink to={!extra?record._id:''} className="text-black ">
         <div className="doctorslist column-card w-100">
           <div className="fundingheader">
             <figure className="figure">
@@ -290,11 +290,8 @@ export const MedicalRecordCard = (props: { record: any; key: number }) => {
               <span className="doc-live">{displayDate(record.nextAppointment)}</span>
             </div>
           </div>
+        
           <div className="totalinvs">
-            <div className="item">
-              <span className="head-sec">Location</span>
-              <span className="amount-sec text-capitalize">{record.hospitalAddress}</span>
-            </div>
             <div className="item">
               <span className="head-sec">Next Visit</span>
               <span className="amount-sec">{displayDate(record.nextAppointment)}</span>
@@ -304,7 +301,38 @@ export const MedicalRecordCard = (props: { record: any; key: number }) => {
               <span className="head-sec">Priority</span>
               <span className="amount-sec text-capitalize">{record.priority}</span>
             </div>
+
+            <div className="item">
+              <span className="head-sec">Illness</span>
+              <span className="amount-sec text-capitalize">{record.illness}</span>
+            </div>
+            <div className="item">
+              <span className="head-sec">Category</span>
+              <span className="amount-sec text-capitalize">{record.categoryOfIllness}</span>
+            </div>
           </div>
+          { extra && 
+          <div className="totalinvs mt-4">  
+            <div className="item">
+              <span className="head-sec">Location</span>
+              <span className="amount-sec text-capitalize">{record.hospitalAddress}</span>
+            </div>
+            <div className="item">
+              <span className="head-sec">illness Status</span>
+              <span className="amount-sec text-capitalize">{record.illnessStatus}</span>
+            </div>
+
+            <div className="item">
+              <span className="head-sec">Phone</span>
+              <span className="amount-sec text-capitalize">{record.phone}</span>
+            </div>
+
+            <div className="item">
+              <span className="head-sec">Doctor</span>
+              <span className="amount-sec text-capitalize">{record.doctor}</span>
+            </div>
+          </div>
+          }
         </div>
       </NavLink>  
       </div>

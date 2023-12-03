@@ -35,11 +35,10 @@ const RequestDetails = () => {
       <section className="container container-fluid benefits-section pt-7 pb-7 px-0 ">
         <div className="container">
           <div className="row">
-            <div className="col-sm-8 pt-4 ">
+            <div className="col-sm-9 pt-4 ">
               <h2 className="title-lg text-center">Blood Request</h2>
               <p className="text-muted text-center mb-5">
-                Donar Needed at Vasant Kunj, New Delhi, South Delhi, Delhi,
-                India
+                Donar Needed at { post?.hospital}, {post?.hospitalAddress}, {post?.state?.value}, {post?.country?.value}
               </p>
               {/* start listing */}
               <div className="row">

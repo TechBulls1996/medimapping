@@ -24,3 +24,15 @@ export const AddRecords = async (params: object) => {
       return error.response.data;
     }
   };  
+
+  export const GetRecord = async (recordId: string | undefined) => {
+    try {
+      const config = {
+        ...setServiceHeaders(),
+      };
+      const res = await axios.get(`${API_URL}/records/${recordId}`, config);
+      return res.data;
+    } catch (error: any) {
+      return error.response.data;
+    }
+  };  

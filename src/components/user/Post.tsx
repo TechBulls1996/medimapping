@@ -48,7 +48,7 @@ const Post = ({ post, donateAction, upLiftDonate }: any) => {
     }
   }, [like, donate, upLiftDonate, donateStatus]);
 
-  const title = `Looking for ${post?.bloodGroup} in ${post?.city?.value} " + ${post?.state?.value}`;
+  const title = `Looking for ${post?.bloodGroup} in ${post?.city?.value}, ${post?.state?.value}`;
 
   if (!post) {
     return <></>;

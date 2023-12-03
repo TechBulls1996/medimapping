@@ -1,12 +1,12 @@
-import RecentDonars from "../../components/user/RecentDonars";
-import Sidebar from "../../components/user/Sidebar";
-import { MedicalRecordCard } from "../../components/user/UserCards";
-import SearchBar from "../../components/common/Search";
+import RecentDonars from "../../../components/user/RecentDonars";
+import Sidebar from "../../../components/user/Sidebar";
+import { MedicalRecordCard } from "../../../components/user/UserCards";
+import SearchBar from "../../../components/common/Search";
 import { useEffect, useState } from "react";
-import RecordModal from "../../components/user/RecordModal";
-import { GetRecords } from "../../services/RecordsServices";
-import { getErrorMsg } from "../../helpers";
-import { MyButton } from "../../components/common/MyButton";
+import RecordModal from "../../../components/user/RecordModal";
+import { GetRecords } from "../../../services/RecordsServices";
+import { getErrorMsg } from "../../../helpers";
+import { MyButton } from "../../../components/common/MyButton";
 
 
 const Records = () => {

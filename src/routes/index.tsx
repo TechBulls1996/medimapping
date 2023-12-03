@@ -12,13 +12,15 @@ import Dashboard from "../pages/user/Dasboard";
 import Community from "../pages/user/Community";
 import RequestDetails from "../pages/RequestDetails";
 import Network from "../pages/user/Network";
-import Doctors from "../pages/user/Doctors";
-import Records from "../pages/user/Records";
+//import Doctors from "../pages/user/Doctors";
+import Records from "../pages/user/Records/Index";
 import Vitals from "../pages/user/Vitals";
 import History from "../pages/user/History";
 import Blogs from "../pages/Blogs";
 import Logout from "../pages/Logout";
 import ForgotPassword from "../pages/ForgotPassword";
+import CommingSoon from "../pages/user/CommingSoon";
+import RecordDetails from "../pages/user/Records/RecordDetails";
 
 function MainLayout() {
   return (
@@ -102,11 +104,15 @@ const ROUTES = [
       },
       {
         path: "doctors",
-        element: <Doctors />,
+        element: <CommingSoon />,
       },
       {
         path: "records",
         element: <Records />,
+      },
+      {
+        path: "records/:recordId",
+        element: <RecordDetails />,
       },
       {
         path: "vitals",
