@@ -153,7 +153,7 @@ const Header = () => {
                                 Community
                               </NavLink>
                             </li>
-                            <li>
+                            {/* <li>
                               <NavLink
                                 to="/user/profile"
                                 className="dropdown-item"
@@ -168,7 +168,7 @@ const Header = () => {
                               >
                                 Settings
                               </NavLink>
-                            </li>
+                            </li> */}
                             <li>
                               <NavLink
                                 to="/auth/logout"

@@ -33,3 +33,7 @@ export const getTimeAgo = (time: any) => {
 export const displayDate = (date: string) => {
   return moment(date).format('DD MMM, YYYY');
 }
+
+export const displayDateAndTime = (date: string) => {
+  return moment(date).format('DD MMM, YYYY hh:mm A');
+}

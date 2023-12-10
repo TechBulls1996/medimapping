@@ -33,7 +33,7 @@ const RecentDonars = () => {
             donars.map((donar: any) => (
               <li className="list-group-item">
                 <div className="pro-outer-sec mt-3">
-                  <NavLink to={"/UserProfile/" + donar.user._id}>
+                  <NavLink to={"/user/profile/" + donar.user._id}>
                     <figure className="figure">
                       <img
                         src={donar?.user?.image || dummyImg}
@@ -43,7 +43,7 @@ const RecentDonars = () => {
                     </figure>
                   </NavLink>
                   <div className="contect-sec">
-                    <NavLink to={"/UserProfile/" + donar.user._id}>
+                    <NavLink to={"/user/profile/" + donar.user._id}>
                       <h3 className="title-xxs">{donar?.user?.name} </h3>
                     </NavLink>
 

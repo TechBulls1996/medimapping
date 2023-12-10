@@ -88,3 +88,17 @@ export const createResponse = async (params?: object) => {
     return error.response.data;
   }
 };
+
+
+export const GetHistoryData = async (params: object) => {
+  try {
+    const config = {
+      ...setServiceHeaders(),
+      params,
+    };
+    const res = await axios.get(`${API_URL}/request/history`, config);
+    return res.data;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};

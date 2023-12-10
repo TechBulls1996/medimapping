@@ -66,7 +66,7 @@ const Post = ({ post, donateAction, upLiftDonate }: any) => {
         <div className="request-tab shadow pt-2">
           <div className="timeline-box justify-content-between ">
             <div className="pro-outer-sec">
-              <NavLink to={"/UserProfile/" + post?.user[0]?._id}>
+              <NavLink to={"/user/profile/" + post?.user[0]?._id}>
                 <figure className="figure">
                   <img
                     src={post?.user[0]?.image || dummyImg}
@@ -76,7 +76,7 @@ const Post = ({ post, donateAction, upLiftDonate }: any) => {
                 </figure>
               </NavLink>
               <div className="contect-sec">
-                <a href={"/UserProfile/" + post?.user[0]?._id}>
+                <a href={"/user/profile/" + post?.user[0]?._id}>
                   <h3 className="title-xxs">{post?.user[0]?.name} </h3>
                 </a>
 

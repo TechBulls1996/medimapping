@@ -30,12 +30,12 @@ const Sidebar = () => {
                 </i>
                 My Network
               </NavLink>
-              <NavLink to={"/user/doctors"} className="nav-link">
+              {/* <NavLink to={"/user/doctors"} className="nav-link">
                 <i className="network-ico ico">
                   <FontAwesomeIcon icon={faUserDoctor} />
                 </i>
                 Find Doctors
-              </NavLink>
+              </NavLink> */}
 
               <NavLink to={"/user/records"} className="nav-link">
                 <i className="network-ico ico">
@@ -44,12 +44,12 @@ const Sidebar = () => {
                 My Medical Records
               </NavLink>
 
-              <NavLink to={"/user/vitals"} className="nav-link">
+              {/* <NavLink to={"/user/vitals"} className="nav-link">
                 <i className="network-ico ico">
                   <FontAwesomeIcon icon={faChartArea} />
                 </i>
                 My Vitals Records
-              </NavLink>
+              </NavLink> */}
               <NavLink to={"/user/history"} className="nav-link">
                 <i className="network-ico ico">
                   <FontAwesomeIcon icon={faClockRotateLeft} />

@@ -6,7 +6,6 @@ import {
   faBriefcase,
   faDollarSign,
   faRightLong,
-  faTint,
 } from "@fortawesome/free-solid-svg-icons";
 import { Key, useEffect, useState } from "react";
 import { displayDate, getErrorMsg, getTimeAgo } from "../../helpers";
@@ -49,13 +48,13 @@ const UserCards = (props: any) => {
           {donars && donars.map((donar: any, ind: Key) => {
                     return (
                       <div className={`user-card mt-3 col ${className}`} key={ind} style={style}>
-                        <a href="/UserProfile/629449f183201e1dcc1407f4">
+                        <a href={`/user/profile/${donar.user._id}`}>
                           <figure className="figure">
                             <img src={dummyImg} className="figure-img img-fluid" alt="" />
                           </figure>
                         </a>
                         <div className="contect-sec">
-                          <a href="/UserProfile/629449f183201e1dcc1407f4/">
+                          <a href={`/user/profile/${donar.user._id}`}>
                             <h3 className="title-xxs"> { donar?.user?.name } </h3>
                           </a>
 
@@ -174,47 +173,7 @@ export const VitalCards = () => {
   );
 };
 
-export const HistoryCard = () => {
-  return (
-    <>
-      <div className="col-sm-12 mb-5 vital-row">
-        <div id="tracking">
-          <div className="text-center tracking-status-intransit">
-            <p className="tracking-status text-tight">My History</p>
-          </div>
-          <div className="tracking-list">
-            <div className="tracking-item">
-              <div className="tracking-icon status-intransit">
-                <FontAwesomeIcon icon={faTint} className="fa-2x" />
-              </div>
-              <div className="tracking-date">19 Mar, 2023 01:39PM</div>
-              <div className="tracking-content text-capitalize">
-                You had Requested blood.
-                <span className="text-capitalize">
-                  raj rishi chatterjee , India , Delhi
-                  <br /> South Delhi , New Delhi
-                </span>
-              </div>
-            </div>
-            <div className="tracking-item status-donate">
-              <div className="tracking-icon status-donate ">
-                <FontAwesomeIcon icon={faTint} className="fa-2x" />
-              </div>
-              <div className="tracking-date">19 Mar, 2023 01:39PM</div>
-              <div className="tracking-content text-capitalize">
-                You had donated blood.
-                <span className="text-capitalize">
-                  raj rishi chatterjee , India , Delhi
-                  <br /> South Delhi , New Delhi
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+
 
 export const DoctorCards = () => {
   return (

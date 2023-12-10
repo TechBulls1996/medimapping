@@ -21,6 +21,7 @@ import Logout from "../pages/Logout";
 import ForgotPassword from "../pages/ForgotPassword";
 import CommingSoon from "../pages/user/CommingSoon";
 import RecordDetails from "../pages/user/Records/RecordDetails";
+import UserProfile from "../pages/user/UserProfile";
 
 function MainLayout() {
   return (
@@ -113,6 +114,10 @@ const ROUTES = [
       {
         path: "records/:recordId",
         element: <RecordDetails />,
+      },
+      {
+        path: "profile/:userId",
+        element: <UserProfile />,
       },
       {
         path: "vitals",
